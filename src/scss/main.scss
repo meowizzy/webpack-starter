@@ -1,0 +1,17 @@
+@import "./_test.scss";
+
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans-Bold.woff2") format("woff2");
+  font-display: swap;
+}
+
+$orange: orange;
+body {
+  background-color: $orange;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  user-select: none;
+  font-family: "OpenSans";
+  background-image: url("../images/formBg.png");
+}
