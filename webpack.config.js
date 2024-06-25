@@ -21,20 +21,15 @@ module.exports = {
         filename: "js/bundle.[contenthash].js",
         clean: true
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "src", "index.html"),
-            inject: "body"
-        }),
-        new MiniCssExtractPlugin({
-            filename: "css/bundle.[contenthash].css",
-        })
-    ],
     module: {
         rules: [
             {
                 test: /\.html$/i,
                 loader: "html-loader"
+            },
+            {
+                test: /\.hbs$/,
+                loader: "handlebars-loader"
             },
             {
                 test: /\.s[ac]ss$/i,
@@ -82,6 +77,16 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "src", "index.hbs"),
+            filename: "index.html",
+            inject: "body"
+        }),
+        new MiniCssExtractPlugin({
+            filename: "css/bundle.[contenthash].css",
+        })
+    ],
     devServer: __IS_DEV__ ? {
         static: {
             directory: path.join(__dirname, "./dist")
