@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const mode = process.env.NODE_ENV || "development";
 const __IS_DEV__ = mode === "development";
@@ -19,7 +20,10 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "js/bundle.[contenthash].js",
-        clean: true
+        clean: {
+            keep: /textolite\//
+        },
+        assetModuleFilename: "assets/[name].[contenthash][ext]",
     },
     module: {
         rules: [
@@ -29,14 +33,17 @@ module.exports = {
             },
             {
                 test: /\.hbs$/,
-                loader: "handlebars-loader"
+                loader: "handlebars-loader",
+                options: {
+                    knownHelpersOnly: false,
+                    inlineRequires: '\/images/*/\/'
+                },
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.(scss|sass|less|css)$/,
                 use: [
                     __IS_DEV__ ? "style-loader" : MiniCssExtractPlugin.loader,
                     "css-loader",
-                    "sass-loader",
                     {
                         loader: "postcss-loader",
                         options: {
@@ -46,11 +53,12 @@ module.exports = {
                                 ],
                             },
                         }
-                    }
+                    },
+                    "sass-loader",
                 ]
             },
             {
-                test: /\.woff2?$/i,
+                test: /\.(woff|woff2|eot|ttf)$/i,
                 type: "asset/resource",
                 generator: {
                     filename: "fonts/[name][ext]"
@@ -59,9 +67,6 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|webp|gif|svg)$/i,
                 type: "asset/resource",
-                generator: {
-                    filename: "assets/[name][ext]"
-                }
             },
             {
                 test: /\.(?:js|mjs|cjs)$/,
@@ -81,10 +86,24 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "src", "index.hbs"),
             filename: "index.html",
-            inject: "body"
+            inject: "body",
+            chunks: ["main"],
+            minify: false
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "src", "uz.hbs"),
+            filename: "uz.html",
+            inject: "body",
+            chunks: ["main"],
+            minify: false
         }),
         new MiniCssExtractPlugin({
             filename: "css/bundle.[contenthash].css",
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: "./src/images",  to: "./assets" }
+            ]
         })
     ],
     devServer: __IS_DEV__ ? {

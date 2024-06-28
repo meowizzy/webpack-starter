@@ -1,17 +1,17 @@
-@import "./_test.scss";
+@import "./_mixins.scss";
+@import "./_variables.scss";
+@import "./_fonts.scss";
+@import "./_reset.scss";
+@import "./_global.scss";
 
-@font-face {
-  font-family: "OpenSans";
-  src: url("../fonts/OpenSans-Bold.woff2") format("woff2");
-  font-display: swap;
-}
-
-$orange: orange;
-body {
-  background-color: $orange;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  user-select: none;
-  font-family: "OpenSans";
-  background-image: url("../images/formBg.png");
-}
+// blocks
+@import "./modules/_button.scss";
+@import "./modules/_languageSwitcher.scss";
+@import "./modules/_servicesList.scss";
+@import "./modules/_header.scss";
+@import "./modules/_banner.scss";
+@import "./modules/_services.scss";
+@import "./modules/_capabilities.scss";
+@import "./modules/_product.scss";
+@import "./modules/_callbackForm.scss";
+@import "./modules/_footer.scss";

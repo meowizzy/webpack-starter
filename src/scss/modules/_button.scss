@@ -1,0 +1,76 @@
+.lp-button {
+  padding: 14px 30px;
+  border-radius: var(--radius-s);
+  font: var(--font-sm);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  min-height: 56px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  &:after {
+    @include pseudo();
+    background-color: rgba(var(--white-rgb), .1);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: var(--transition);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:before {
+    content: "";
+    display: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: rotating 1s linear infinite;
+    margin-right: 10px;
+  }
+
+  &.isLoading {
+    &:before {
+      display: block;
+    }
+  }
+
+  @keyframes rotating {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  &.primary {
+    background-image: var(--gradient);
+    background-repeat: no-repeat;
+    color: var(--color-white);
+
+    &:before {
+      border: 3px solid var(--color-white);
+      border-bottom: 3px solid transparent;
+    }
+
+    &:hover {
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.secondary {
+    background-color: var(--color-white);
+    color: var(--primary);
+    &:before {
+      border: 3px solid var(--primary);
+      border-bottom: 3px solid transparent;
+    }
+  }
+}

@@ -1,0 +1,103 @@
+body {
+  color: var(--color-dark);
+  font: var(--font-weight-m) var(--font-sm);
+  background-color: var(--site-color);
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
+
+  @media all and (max-width: 1248px) and (min-width: 769px) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  @media all and (max-width: 769px) {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+}
+
+.text-xxl {
+  font: var(--font-weight-b) var(--font-xxl);
+
+  @media all and (max-width: 768px) {
+    font: var(--font-weight-b) var(--font-xl);
+  }
+}
+
+.text-xl {
+  font: var(--font-weight-b) var(--font-xl);
+  word-wrap: break-word;
+}
+
+.text-xm {
+  font: var(--font-weight-m) var(--font-xm);
+  word-wrap: break-word;
+}
+
+.form {
+  $self: &;
+  input, select, textarea {
+    border-radius: var(--radius-s);
+    min-height: 56px;
+    background-color: var(--color-white);
+    transition: box-shadow var(--transition);
+    box-shadow: none;
+    width: 100%;
+    padding: 15px 20px;
+    font: var(--font-weight-r) var(--font-sm);
+    &::placeholder {
+      color: var(--input-color);
+    }
+    &:focus {
+      box-shadow: inset 0 0 0 10px solid var(--primary);
+    }
+  }
+
+  &__fields-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin: 0 -9px;
+    #{$self}__field {
+      margin: 0 9px 18px;
+      width: calc(50% - 18px);
+
+      @media all and (max-width: 768px) {
+        margin: 0 0 18px;
+        width: 100%;
+      }
+    }
+
+    @media all and (max-width: 768px) {
+      margin: 0;
+      flex-direction: column;
+    }
+  }
+}
+
+.swiper-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(var(--dark-rgb), .2);
+    margin: 0 6px;
+    transition: background-color var(--transition);
+    &.swiper-pagination-bullet-active {
+      background-color: var(--color-dark);
+    }
+  }
+}
