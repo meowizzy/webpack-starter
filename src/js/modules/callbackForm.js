@@ -46,9 +46,9 @@ export const callbackForm = () => {
 
             let successContent;
 
-            if (lang === "ru") {
+            if (lang === "ru" || !lang) {
                 successContent = `Заявка успешно отправлена. <br> <span class="sub" style="font-size: var(--font-size-xm)">Мы свяжемся с Вами в ближайшее время.</span>`;
-            } else {
+            } else if (lang === "uz"){
                 successContent = `Ilova muvaffaqiyatli yuborildi. <br> <span class="sub" style="font-size: var(--font-size-xm)">Tez orada siz bilan bog'lanamiz.</span>`
             }
 

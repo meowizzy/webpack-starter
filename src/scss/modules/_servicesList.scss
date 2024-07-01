@@ -54,9 +54,6 @@
     align-items: center;
     list-style: none;
     margin-bottom: 10px;
-    &:last-child {
-      margin-bottom: 0;
-    }
     &--sm {
       #{$self}__title {
         font: var(--font-sm) !important;
@@ -70,7 +67,7 @@
   align-items: center;
   cursor: pointer;
   color: rgba(var(--dark-rgb), .5);
-  margin-top: 14px;
+  //margin-top: 14px;
   $self: &;
 
   * {

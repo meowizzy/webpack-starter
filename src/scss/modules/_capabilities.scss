@@ -95,6 +95,11 @@
     @media all and (max-width: 640px) {
       max-width: 80px;
       margin-bottom: 30px;
+
+      &:last-child {
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
     img, svg {
       max-width: 100%;

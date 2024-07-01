@@ -9,6 +9,9 @@ export const mobileSlider = () => {
         Swiper.use([Pagination, Autoplay]);
 
         new Swiper('.banner__mobile-slider', {
+            hashNavigation: {
+                watchState: true,
+            },
             pagination: {
                 slidesPerView: 1,
                 spaceBetween: 30,

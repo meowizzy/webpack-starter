@@ -1,3 +1,5 @@
+import { isMobile } from "../helpers/isMobile";
+
 export const servicesListDropDown = () => {
     const lists = document.querySelectorAll(".services-list--with-dropdown");
     const lang = document.documentElement.lang;
@@ -8,11 +10,13 @@ export const servicesListDropDown = () => {
 
     const setListStyles = (list) => {
         const initialHeight = Array.from(list.children).reduce((acc, item, currentIndex) => {
-            if (currentIndex > 3) {
-                return acc;
+            if (currentIndex < 3) {
+                return acc + item.offsetHeight + (isMobile() ? 10 : 14);
             }
-            return acc + item.offsetHeight;
+            return acc;
         }, 0);
+
+        console.log(initialHeight)
 
         list.style.cssText = `
             max-height: ${initialHeight}px;
