@@ -18,7 +18,7 @@
       top: 0;
       left: 0;
       right: 0;
-      bottom: -5rem;
+      bottom: -5.5rem;
       pointer-events: none;
       background-image: url("../images/form-terminal.png");
       @include bg-op(40%, left center, no-repeat);
@@ -66,27 +66,25 @@
       padding: 40px 30px 350px;
       &:before {
         background-image: url("../images/callbackFormMobile.png");
-        @include bg-op(65%, center bottom, no-repeat);
+        @include bg-op(340px, center bottom, no-repeat);
       }
     }
 
     @media all and (max-width: 480px) {
       &:before {
-        @include bg-op(75%, center bottom, no-repeat);
+        //@include bg-op(75%, center bottom, no-repeat);
       }
     }
 
     @media all and (max-width: 380px) {
       &:before {
-        @include bg-op(90%, center bottom, no-repeat);
+        //@include bg-op(90%, center bottom, no-repeat);
       }
     }
 
     @media all and (max-width: 360px) {
-      padding: 40px 30px 330px;
       &:before {
-        @include bg-op(90%, right 30% bottom, no-repeat);
-        bottom: -5rem;
+        @include bg-op(340px, right 30% bottom, no-repeat);
       }
     }
   }
