@@ -16,8 +16,6 @@ export const servicesListDropDown = () => {
             return acc;
         }, 0);
 
-        console.log(initialHeight)
-
         list.style.cssText = `
             max-height: ${initialHeight}px;
         `;

@@ -4,7 +4,7 @@ import { resizeController } from "../helpers/resizeController";
 import "swiper/css";
 
 export const mobileSlider = () => {
-    resizeController(480, () => {
+    resizeController(639, () => {
         if (!Swiper) return;
         Swiper.use([Pagination, Autoplay]);
 
@@ -13,10 +13,21 @@ export const mobileSlider = () => {
                 watchState: true,
             },
             pagination: {
-                slidesPerView: 1,
-                spaceBetween: 30,
-                el: ".banner__mobile-slider-pagination",
+                el: '.swiper-pagination',
                 clickable: true,
+                type: 'custom',
+                renderCustom: function (swiper, current, total) {
+                    let out = ''
+                    for (let i = 1; i < total+1; i++) {
+                        if (i === current) {
+                            out = out + '<span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex='+i+' role="button" aria-label="Go to slide '+i+1+'"></span>';
+                        }
+                        else {
+                            out = out + '<span class="swiper-pagination-bullet" tabindex='+i+' role="button" aria-label="Go to slide '+i+1+'"></span>';
+                        }
+                    }
+                    return out;
+                },
             },
             speed: 800,
             autoplay: {

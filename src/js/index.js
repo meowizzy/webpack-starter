@@ -12,11 +12,11 @@ const onDocumentLoaded = () => {
     if (element) {
         element.innerHTML = new Date().getFullYear();
     }
+    setTimeout(servicesListDropDown, 300);
     mobileSlider();
     inputMaskInit()
     languageSwitcher();
     callbackForm();
-    servicesListDropDown();
     menuListDropDown();
 };
 

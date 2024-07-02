@@ -38,11 +38,17 @@ export const callbackForm = () => {
         try {
             validatePhoneInput(data.phone);
 
+            let successFlag = false; // workaround
+
             button.classList.add("isLoading");
+
             const response = await fetch(GOOGLE_SHEETS_URL, {
                 method: "POST",
                 body: JSON.stringify(data),
+                mode: "no-cors"
             });
+
+            successFlag = true; // workaround
 
             let successContent;
 
@@ -52,8 +58,12 @@ export const callbackForm = () => {
                 successContent = `Ilova muvaffaqiyatli yuborildi. <br> <span class="sub" style="font-size: var(--font-size-xm)">Tez orada siz bilan bog'lanamiz.</span>`
             }
 
-            if (response.status === 200) {
+            if (response.status === 200 || successFlag) {
+                form.closest(".container").classList.add("form-success");
                 form.closest(".callback__col").innerHTML = `
+                    <div class="success-icon">
+                        <svg width="800px" height="800px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="okIconTitle" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#ffffff"> <title id="okIconTitle">Ok</title> <polyline points="4 13 9 18 20 7"/> </svg>
+                    </div>
                     <div class="success text-xl">
                         ${successContent}
                     </div>
@@ -61,9 +71,6 @@ export const callbackForm = () => {
             }
         } catch (e) {
             form.insertAdjacentHTML("beforebegin", `<div class="error-message">${e.message}</div>`);
-
-            formElements.phone.value = "";
-            formElements.name.value = "";
         } finally {
             button.classList.remove("isLoading");
         }

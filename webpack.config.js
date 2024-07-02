@@ -2,7 +2,6 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-
 const mode = process.env.NODE_ENV || "development";
 const __IS_DEV__ = mode === "development";
 const target = __IS_DEV__ ? "web" : "browserslist";
@@ -36,7 +35,7 @@ module.exports = {
                 loader: "handlebars-loader",
                 options: {
                     knownHelpersOnly: false,
-                    inlineRequires: '\/images/*/\/'
+                    inlineRequires: '\/images/*/\/',
                 },
             },
             {

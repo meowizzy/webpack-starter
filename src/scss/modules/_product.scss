@@ -5,12 +5,8 @@
   @include bg-op(contain, top center, no-repeat);
 
   .container {
-    padding-top: 160px;
-    padding-bottom: 160px;
-    @media all and (max-width: 768px) {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
+    padding-top: 70px;
+    padding-bottom: 70px;
   }
 
   &__head {
@@ -73,7 +69,7 @@
 
   &__pic {
     max-width: 308px;
-    margin: 120px auto 0;
+    margin: 50px auto 0;
     @media all and (max-width: 767px) {
       margin: 50px auto 0;
     }
@@ -83,7 +79,7 @@
     background-color: var(--color-white);
     border-radius: var(--radius-m);
     color: var(--color-dark);
-    padding: 90px 80px;
+    padding: 50px 80px;
     margin-top: -167px;
     z-index: 2;
     position: relative;
