@@ -7,6 +7,12 @@
   .container {
     padding-top: 70px;
     padding-bottom: 70px;
+
+    @media all and (max-width: 639px) {
+      padding-top: 30px;
+      padding-bottom: 50px;
+
+    }
   }
 
   &__head {
@@ -96,12 +102,20 @@
     }
 
     @media all and (max-width: 480px) {
-      padding: 40px 25px 400px;
-      background-size: 95%;
+      padding: 40px 25px 300px;
+      background-size: 70%;
+    }
+
+    @media all and (max-width: 440px) {
+      background-size: 75%;
+    }
+
+    @media all and (max-width: 400px) {
+      background-size: 85%;
     }
 
     @media all and (max-width: 375px) {
-      padding: 40px 25px 300px;
+      background-size: 95%;
     }
   }
 
