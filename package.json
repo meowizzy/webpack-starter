@@ -35,6 +35,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "lightgallery": "^2.7.2",
     "swiper": "^11.1.4"
   }
 }

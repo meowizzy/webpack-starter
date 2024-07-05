@@ -1,0 +1,30 @@
+.faq {
+  &__title {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -12px;
+  }
+
+  &__item {
+    background-color: var(--color-white);
+    border-radius: var(--radius-sm);
+    width: calc(100% / 2 - 24px);
+    margin: 0 12px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item-head {
+    width: 100%;
+    font-weight: var(--font-weight-b);
+    padding: 49px 86px 49px 40px;
+  }
+
+  &__item-body {
+
+  }
+}
