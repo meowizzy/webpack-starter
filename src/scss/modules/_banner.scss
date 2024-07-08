@@ -10,10 +10,12 @@
     display: flex;
     align-items: stretch;
     position: relative;
+    overflow: hidden;
+    min-height: 660px;
     @media all and (max-width: 639px) {
       background-color: var(--mobile-slider-background);
       background-image: none;
-      padding: 40px 10px 50px;
+      padding: 40px 10px 40px;
       * {
         color: var(--color-dark);
       }
@@ -25,12 +27,20 @@
     @media all and (max-width: 639px) {
       margin-bottom: 2px;
     }
+    h1 {
+      font-size: 44px;
+      @media all and (max-width: 639px) {
+        font: var(--font-weight-b) var(--font-xl);
+      }
+    }
   }
 
   &__subtitle {
     word-wrap: break-word;
+    font-size: 26px;
+    line-height: 36px;
     @media all and (max-width: 639px) {
-      font: var(--font-l);
+      font: var(--font-weight-b) var(--font-xm);
     }
   }
 
@@ -50,6 +60,7 @@
 
   &__right-col {
     flex-grow: 1;
+    text-align: right;
     @media all and (max-width: 1118px) {
       display: none;
     }
@@ -57,13 +68,13 @@
 
   &__pic {
     position: absolute;
-    right: -70px;
-    top: -40px;
+    right: 80px;
+    bottom: -233px;
     pointer-events: none;
 
     @media all and (max-width: 1376px) {
-      top: -20px;
-      right: -20px;
+      bottom: -233px;
+      right: 40px;
     }
   }
 
@@ -81,18 +92,23 @@
   &__footer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 30px;
     @media all and (max-width: 639px) {
       text-align: center;
       flex-direction: column;
+
+      .lp-button {
+        min-width: 240px;
+      }
     }
   }
 
   &__footer-left {
+    margin-right: 40px;
     @media all and (max-width: 639px) {
       margin-bottom: 20px;
+      margin-right: 0;
     }
   }
 
@@ -103,6 +119,17 @@
   &__footer-subtitle {
     font: var(--font-m);
     color: var(--color-gray);
+    position: relative;
+    display: inline-block;
+    &:before {
+      @include pseudo();
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      height: 1px;
+      background-color: var(--color-light-dark);
+    }
     @media all and (max-width: 639px) {
       font: var(--font-sm);
       span {

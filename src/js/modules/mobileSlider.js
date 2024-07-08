@@ -13,7 +13,7 @@ export const mobileSlider = () => {
                 watchState: true,
             },
             pagination: {
-                el: '.swiper-pagination',
+                el: '.banner__mobile-slider-pagination',
                 clickable: true,
                 type: 'custom',
                 renderCustom: function (swiper, current, total) {

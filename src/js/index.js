@@ -3,9 +3,10 @@ import { callbackForm } from "./modules/callbackForm";
 import { inputMaskInit } from "./modules/inputMaskInit";
 import { menuListDropDown } from "./modules/menuListDropDown";
 import { mobileSlider } from "./modules/mobileSlider";
-import "./libs/input-mask.min";
 import { todoSlider } from "./modules/todoSlider";
 import { lightGalleryInit } from "./modules/lightGalleryInit";
+import { faqAccordion } from "./modules/faqAccordion";
+import "./libs/input-mask.min";
 
 const onDocumentLoaded = () => {
     const element = document.getElementById("curYear");
@@ -13,6 +14,7 @@ const onDocumentLoaded = () => {
     if (element) {
         element.innerHTML = new Date().getFullYear();
     }
+
     mobileSlider();
     inputMaskInit()
     languageSwitcher();
@@ -20,6 +22,7 @@ const onDocumentLoaded = () => {
     menuListDropDown();
     todoSlider();
     lightGalleryInit();
+    faqAccordion();
 };
 
 document.addEventListener("DOMContentLoaded", onDocumentLoaded);

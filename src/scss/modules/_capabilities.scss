@@ -1,19 +1,24 @@
 .capabilities {
   $self: &;
   .container {
-    background-color: var(--color-light-gray);
     border-radius: var(--radius-m);
     padding: 50px 135px 50px;
     margin-bottom: 70px;
     margin-top: 70px;
+
     @media all and (max-width: 768px) {
       padding: 50px 10px 50px;
       margin-bottom: 70px;
     }
 
+    @media all and (min-width: 481px) {
+      background-color: var(--color-light-gray);
+    }
+
     @media all and (max-width: 480px) {
-      padding: 40px 10px 10px;
-      margin-bottom: 30px;
+      padding: 0 10px 0;
+      margin-top: 20px;
+      margin-bottom: 65px;
     }
   }
 
@@ -23,6 +28,11 @@
 
   &__title {
     margin-bottom: 30px;
+
+    @media all and (max-width: 480px) {
+      font-size: 32px;
+      margin-bottom: 18px;
+    }
   }
 
   &__table {
@@ -40,12 +50,31 @@
     padding: 20px 40px;
     font: var(--font-weight-m) var(--font-m);
     color: var(--secondary);
+
+    @media all and (max-width: 768px) {
+      font-size: 16px;
+      padding: 20px;
+    }
+
+    @media all and (max-width: 480px) {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 13.2px !important;
+      padding: 6.5px 10px;
+      min-height: 56px;
+    }
     a {
       text-decoration: none;
       color: var(--primary);
       font: var(--font-weight-s) var(--font-s);
       &:hover {
         text-decoration: underline;
+      }
+
+      @media all and (max-width: 480px) {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 13.2px;
       }
     }
     &:first-child {
@@ -66,11 +95,21 @@
     .title {
       font: var(--font-weight-b) var(--font-xm);
       color: var(--color-dark);
+
+      @media all and (max-width: 480px) {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+      }
     }
 
     .desc {
       font: var(--font-weight-s) var(--font-s);
       color: rgba(var(--dark-rgb), .4);
+
+      @media all and (max-width: 480px) {
+        display: none;
+      }
     }
   }
 
@@ -87,10 +126,18 @@
     #{$self}__table-col {
       justify-content: flex-start;
       padding: 40px 40px 30px;
+      @media all and (max-width: 480px) {
+        padding: 20px 10px;
+        justify-content: center;
+      }
     }
   }
 
   &__table-footer {
-
+    #{$self}__table-col {
+      @media all and (max-width: 480px) {
+        padding: 20px 10px;
+      }
+    }
   }
 }
