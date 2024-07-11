@@ -37,6 +37,9 @@
       font-weight: var(--font-weight-m);
       font-size: 20px;
       line-height: 30px;
+      br {
+        display: none;
+      }
     }
   }
 
@@ -154,6 +157,9 @@
       padding: 50px 0 0 0;
       max-width: unset;
       font: var(--font-weight-m) var(--font-l);
+      br {
+        display: none;
+      }
     }
 
     @media all and (max-width: 375px) {

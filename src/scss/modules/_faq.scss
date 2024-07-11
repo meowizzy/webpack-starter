@@ -13,9 +13,13 @@
   }
   &__items {
     margin: 0 -12px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
+    //display: flex;
+    gap: 0;
+    //flex-wrap: wrap;
+    //align-items: flex-start;
+    @media all and (min-width: 769px) {
+      column-count: 2;
+    }
     @media all and (max-width: 768px) {
       flex-direction: column;
       margin: 0;
@@ -80,10 +84,11 @@
   &__item {
     background-color: var(--color-white);
     border-radius: var(--radius-sm);
-    width: calc(50% - 24px);
+    //width: calc(50% - 24px);
     margin: 0 12px 24px;
     padding-top: 48px;
     padding-bottom: 48px;
+    break-inside: avoid;
 
     @media all and (max-width: 768px) {
       width: 100%;

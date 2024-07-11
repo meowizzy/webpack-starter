@@ -162,14 +162,9 @@
       }
 
       &.with-icon {
-        a {
-          display: block;
+        svg, img {
           width: 88px;
           height: 65px;
-          svg, img {
-            max-width: 100%;
-            max-height: 100%;
-          }
         }
       }
     }

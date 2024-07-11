@@ -142,4 +142,39 @@
       }
     }
   }
+
+  &__form-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 64px;
+    @media all and (max-width: 1024px) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 40px;
+    }
+
+    @media all and (max-width: 639px) {
+      align-items: center;
+      text-align: center;
+      .lp-button {
+        width: auto;
+      }
+    }
+    span {
+      font: var(--font-weight-m) var(--font-m);
+      max-width: 315px;
+      display: inline-block;
+      @media all and (max-width: 1024px) {
+        margin-bottom: 20px;
+      }
+
+      @media all and (max-width: 639px) {
+        font-size: 15px;
+        font-weight: var(--font-weight-s);
+        line-height: 16.5px;
+        max-width: 190px;
+      }
+    }
+  }
 }
