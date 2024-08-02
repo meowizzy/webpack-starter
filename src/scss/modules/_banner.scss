@@ -46,6 +46,11 @@
 
   &__left-col {
     max-width: 53.3%;
+    @media all and (min-width: 640px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
     @media all and (max-width: 1118px) {
       max-width: unset;
       width: 100%;

@@ -18,7 +18,7 @@
       top: 0;
       left: 0;
       right: 0;
-      bottom: -5rem;
+      bottom: -5.5rem;
       pointer-events: none;
       background-image: url("../images/form-terminal.png");
       @include bg-op(40%, left center, no-repeat);
@@ -58,35 +58,33 @@
 
     @media all and (max-width: 768px) {
       padding: 50px;
-      margin-top: 40px;
-      margin-bottom: 40px;
+      margin-top: 50px;
+      margin-bottom: 50px;
     }
 
     @media all and (max-width: 639px) {
       padding: 40px 30px 350px;
       &:before {
         background-image: url("../images/callbackFormMobile.png");
-        @include bg-op(65%, center bottom, no-repeat);
+        @include bg-op(340px, center bottom, no-repeat);
       }
     }
 
     @media all and (max-width: 480px) {
       &:before {
-        @include bg-op(75%, center bottom, no-repeat);
+        //@include bg-op(75%, center bottom, no-repeat);
       }
     }
 
     @media all and (max-width: 380px) {
       &:before {
-        @include bg-op(90%, center bottom, no-repeat);
+        //@include bg-op(90%, center bottom, no-repeat);
       }
     }
 
     @media all and (max-width: 360px) {
-      padding: 40px 30px 330px;
       &:before {
-        @include bg-op(90%, right 30% bottom, no-repeat);
-        bottom: -5rem;
+        @include bg-op(340px, right 30% bottom, no-repeat);
       }
     }
   }
@@ -139,41 +137,6 @@
     @media all and (max-width: 639px) {
       .lp-button {
         width: 100%;
-      }
-    }
-  }
-
-  &__form-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 64px;
-    @media all and (max-width: 1024px) {
-      flex-direction: column;
-      align-items: flex-start;
-      padding-top: 40px;
-    }
-
-    @media all and (max-width: 639px) {
-      align-items: center;
-      text-align: center;
-      .lp-button {
-        width: auto;
-      }
-    }
-    span {
-      font: var(--font-weight-m) var(--font-m);
-      max-width: 315px;
-      display: inline-block;
-      @media all and (max-width: 1024px) {
-        margin-bottom: 20px;
-      }
-
-      @media all and (max-width: 639px) {
-        font-size: 15px;
-        font-weight: var(--font-weight-s);
-        line-height: 16.5px;
-        max-width: 190px;
       }
     }
   }

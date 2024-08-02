@@ -1,4 +1,4 @@
-import { GOOGLE_SHEETS_URL, LOCAL_STORAGE_LANG_KEY } from "../app/constants";
+import {BASE_URL, GOOGLE_SHEETS_URL, LOCAL_STORAGE_LANG_KEY, SOURCE} from "../app/constants";
 
 export const callbackForm = () => {
     const form = document.querySelector(".callback__form .form");
@@ -14,6 +14,22 @@ export const callbackForm = () => {
             console.log(lang);
             throw new Error(lang === "ru" ? "Некорректный номер телефона" : "Telefon raqami noto‘g‘ri");
         }
+    };
+
+    const sendDataToGoogleSheets = async (data) => {
+        if (window.ym) {
+            window.ym(97752261,'reachGoal','generate_lead');
+        }
+
+        if (window.fbq) {
+            window.fbq('track', 'Lead');
+        }
+
+        return await fetch(GOOGLE_SHEETS_URL, {
+            method: "POST",
+            body: JSON.stringify(data),
+            mode: "no-cors"
+        });
     };
 
     const onSubmit = async (e) => {
@@ -35,39 +51,52 @@ export const callbackForm = () => {
             ...utms
         };
 
+        sendDataToGoogleSheets(data);
+
         try {
             validatePhoneInput(data.phone);
 
-            let successFlag = false; // workaround
-
             button.classList.add("isLoading");
 
-            const response = await fetch(GOOGLE_SHEETS_URL, {
+            const response = await fetch(BASE_URL + "/requisition", {
                 method: "POST",
-                body: JSON.stringify(data),
-                mode: "no-cors"
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    phone: data.phone,
+                    fullName: data.name,
+                    source: SOURCE
+                })
             });
 
-            successFlag = true; // workaround
+            if (response.ok) {
+                let successContent;
 
-            let successContent;
+                if (lang === "ru" || !lang) {
+                    successContent = `Заявка успешно отправлена. <br> <span class="sub" style="font-size: var(--font-size-xm)">Мы свяжемся с Вами в ближайшее время.</span>`;
+                } else if (lang === "uz"){
+                    successContent = `Ilova muvaffaqiyatli yuborildi. <br> <span class="sub" style="font-size: var(--font-size-xm)">Tez orada siz bilan bog'lanamiz.</span>`
+                }
 
-            if (lang === "ru" || !lang) {
-                successContent = `Заявка успешно отправлена. <br> <span class="sub" style="font-size: var(--font-size-xm)">Мы свяжемся с Вами в ближайшее время.</span>`;
-            } else if (lang === "uz"){
-                successContent = `Ilova muvaffaqiyatli yuborildi. <br> <span class="sub" style="font-size: var(--font-size-xm)">Tez orada siz bilan bog'lanamiz.</span>`
-            }
-
-            if (response.status === 200 || successFlag) {
                 form.closest(".container").classList.add("form-success");
                 form.closest(".callback__col").innerHTML = `
-                    <div class="success-icon">
-                        <svg width="800px" height="800px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="okIconTitle" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#ffffff"> <title id="okIconTitle">Ok</title> <polyline points="4 13 9 18 20 7"/> </svg>
-                    </div>
-                    <div class="success text-xl">
-                        ${successContent}
-                    </div>
-                `;
+                <div class="success-icon">
+                    <svg width="800px" height="800px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="okIconTitle" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" color="#ffffff"> <title id="okIconTitle">Ok</title> <polyline points="4 13 9 18 20 7"/> </svg>
+                </div>
+                <div class="success text-xl">
+                    ${successContent}
+                </div>
+            `;
+
+                if (gtag) {
+                    gtag("event", "generate_lead", {
+                        currency: "USD",
+                        value: 1.00
+                    });
+                }
+            } else {
+                throw new Error("Неудалось отправить заявку");
             }
         } catch (e) {
             form.insertAdjacentHTML("beforebegin", `<div class="error-message">${e.message}</div>`);
