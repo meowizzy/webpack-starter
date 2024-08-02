@@ -1,4 +1,8 @@
-import { GOOGLE_SHEETS_URL, LOCAL_STORAGE_LANG_KEY } from "../app/constants";
+import {
+    GOOGLE_SHEETS_URL,
+    LOCAL_STORAGE_LANG_KEY,
+    BASE_URL
+} from "../app/constants";
 
 export const callbackForm = () => {
     const form = document.querySelector(".callback__form .form");
@@ -14,6 +18,10 @@ export const callbackForm = () => {
             console.log(lang);
             throw new Error(lang === "ru" ? "Некорректный номер телефона" : "Telefon raqami noto‘g‘ri");
         }
+    };
+
+    const createRequisition = async () => {
+
     };
 
     const onSubmit = async (e) => {
@@ -42,7 +50,15 @@ export const callbackForm = () => {
 
             button.classList.add("isLoading");
 
-            const response = await fetch(GOOGLE_SHEETS_URL, {
+            if (window.ym) {
+                window.ym(97752261,'reachGoal','generate_lead');
+            }
+
+            if (window.fbq) {
+                window.fbq('track', 'Lead');
+            }
+
+            const googleSheetsResponse = await fetch(GOOGLE_SHEETS_URL, {
                 method: "POST",
                 body: JSON.stringify(data),
                 mode: "no-cors"
@@ -58,7 +74,7 @@ export const callbackForm = () => {
                 successContent = `Ilova muvaffaqiyatli yuborildi. <br> <span class="sub" style="font-size: var(--font-size-xm)">Tez orada siz bilan bog'lanamiz.</span>`
             }
 
-            if (response.status === 200 || successFlag) {
+            if (googleSheetsResponse.status === 200 || successFlag) {
                 form.closest(".container").classList.add("form-success");
                 form.closest(".callback__col").innerHTML = `
                     <div class="success-icon">
@@ -68,6 +84,13 @@ export const callbackForm = () => {
                         ${successContent}
                     </div>
                 `;
+
+                if (gtag) {
+                    gtag("event", "generate_lead", {
+                        currency: "USD",
+                        value: 1.00
+                    });
+                }
             }
         } catch (e) {
             form.insertAdjacentHTML("beforebegin", `<div class="error-message">${e.message}</div>`);

@@ -33,6 +33,7 @@
   }
 
   &.isLoading {
+    pointer-events: none;
     &:before {
       display: block;
     }
