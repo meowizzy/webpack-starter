@@ -96,6 +96,13 @@ module.exports = {
             chunks: ["main"],
             minify: false
         }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "src", "cuz.hbs"),
+            filename: "cuz.html",
+            inject: "body",
+            chunks: ["main"],
+            minify: false
+        }),
         new MiniCssExtractPlugin({
             filename: "css/bundle.[contenthash].css",
         }),

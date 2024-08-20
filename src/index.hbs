@@ -5,40 +5,211 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hamkor-Smartpos</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VN5Q05R6VE"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-VN5Q05R6VE');
-    </script>
-
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MDDRXXLC');</script>
-    <!-- End Google Tag Manager -->
+    <title>Оплата | A-Pay</title>
+    <link rel="icon" href="https://a-pay.uz/wp-content/themes/apay/favicon/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://a-pay.uz/wp-content/themes/apay/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://a-pay.uz/wp-content/themes/apay/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://a-pay.uz/wp-content/themes/apay/favicon/favicon-16x16.png">
+    <meta name="yandex-verification" content="0aebdd20503f20b4"/>
+    <meta name="theme-color" content="#ffffff">
+    <meta name="facebook-domain-verification" content="cobkp7d9mfteojw8b0mgyp23h0by0l" />
+    <meta name='robots' content='max-image-preview:large' />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDDRXXLC"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<svg style="position: absolute; top: -1000px; left: -1000px; pointer-events: none; opacity: 0">
-        {{> template-parts/sprites }}
-    </svg>
-    {{> template-parts/header }}
-    {{> template-parts/banner }}
-    {{> template-parts/services  }}
-    {{> template-parts/capabilities  }}
-    {{> template-parts/product  }}
-    {{> template-parts/callback-form  }}
-    {{> template-parts/footer }}
+<body class="page-template page-template-payment-page page-template-payment-page-php page page-id-2399 logged-in">
+<div class="main-loading">
+    <div class="main-loading__icon"></div>
+</div>
+<div class="payment-wrap d-none">
+    <header class="payment-header payment-container">
+        <div>
+            <div class="logo-wrapper">
+                <a href='/'>
+                    <img src='./assets/logo.png' alt="site logo"/>
+                </a>
+            </div>
+        </div>
+        <div>
+            <div class="dropdown language-selector">
+                <button
+                        class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton2"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                ><img src="./assets/ru_RU.svg" alt="">Рус</button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
+                    <ul>
+                        <li class="lang-item lang-item-33 lang-item-cuz lang-item-first"><a  lang="cyr-UZ" hreflang="cyr-UZ" href="/cuz.html"><img src="./assets/cyr_UZ.svg" alt="Ўзб" /><span style="margin-left:0.3em;">Ўзб</span></a></li>
+                        <li class="lang-item lang-item-5 lang-item-uz"><a  lang="uz-UZ" hreflang="uz-UZ" href="/uz.html"><img src="./assets/uz_UZ.svg" alt="Oʻzb" /><span style="margin-left:0.3em;">Oʻzb</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="payment-container">
+        <div class="payment-details">
+            <div class="payment-details__head">
+                <div class="payment-details__head__top">
+                    <div class="payment-details__head__title"></div>
+                    <!--                        <button-->
+                    <!--                                class="payment-btn payment-btn-primary small"-->
+                    <!--                                data-toggle="modal"-->
+                    <!--                                data-target="#paymentDetailsModal"-->
+                    <!--                        >-->
+                    <!--                            --><!--                        </button>-->
+                </div>
+                <div class="payment-details__head__bot">
+                    <div class="payment-details__block">
+                        <div class="payment-details__block__title">Платеж №</div>
+                        <div class="payment-details__block__val payment-number"></div>
+                    </div>
+                    <div class="payment-details__block">
+                        <div class="payment-details__block__title">Статус </div>
+                        <div class="payment-details__block__val payment-status">
+                            <div class="payment-status__first">В ожидании</div>
+                            <div class="payment-status__second">Успешно</div>
+                            <div class="payment-status__third">Отменено</div>
+                        </div>
+                    </div>
+                    <div class="payment-details__block">
+                        <div class="payment-details__block__title">Сумма</div>
+                        <div class="payment-details__block__val payment-amount">
+                            <span></span>
+                            сум                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-details__form">
+                <div class="payment-finish-state d-none">
+                    <div class="payment-finish-state__icon"></div>
+                    <div class="payment-finish-state__text">
+                            <span class="payment-finish-state__text__first">
+                                Оплата прошла успешно<!--                                <div class="payment-go-back-link">-->
+                                <!--                                    <a href="javascript:history.back()">--><!--</a>-->
+                                <!--                                </div>-->
+                            </span>
+                        <span class="payment-finish-state__text__second">Ошибка оплаты</span>
+                    </div>
+                </div>
+                <div class="payment-loading d-none">
+                    <div class="payment-loading__icon"></div>
+                    <div class="payment-loading__text">
+                        <span class="s1 d-none">Обработка запроса</span>
+                        <span class="s2 d-none">Оплата платежа</span>
+                    </div>
+                </div>
+                <form autocomplete="on" action="#" class="form-step1 d-none">
+                    <div>
+                        <div class="payment-details__form__fields">
+                            <div class="payment-details__form__title">Оплата</div>
+                            <div class="payment-details__form__row">
+                                <div class="payment-details__form__fields__item">
+                                    <label for="cardNumber">Номер карты</label>
+                                    <div class="card-fields">
+                                        <div>
+                                            <input
+                                                    type="tel"
+                                                    name="cardNumber"
+                                                    id="cardNumber"
+                                                    placeholder="0000 0000 0000 0000"
+                                                    class="form-card-input"
+                                                    autocomplete="tel"
+                                                    inputmode="tel"
+                                            />
+                                        </div>
+                                        <label for="cardExpire">Срок</label>
+                                        <div>
+                                            <input
+                                                    type="tel"
+                                                    id="cardExpire"
+                                                    placeholder="ММ / ГГ"
+                                                    class="form-expiry-input"
+                                                    autocomplete="tel"
+                                                    inputmode="tel"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                    <div class="payment-details__form__fields__item cvv-field">-->
+                                <!--                                        <label for="cvv">CVV</label>-->
+                                <!--                                        <div>-->
+                                <!--                                            <input-->
+                                <!--                                                type="tel"-->
+                                <!--                                                name="cvv"-->
+                                <!--                                                id="cvv"-->
+                                <!--                                                placeholder="000"-->
+                                <!--                                                class="form-cvv-input"-->
+                                <!--                                                autocomplete="tel"-->
+                                <!--                                                inputmode="tel"-->
+                                <!--                                                disabled-->
+                                <!--                                            />-->
+                                <!--                                        </div>-->
+                                <!--                                    </div>-->
+                            </div>
+                            <div class="payment-details__form__fields__button">
+                                <button type="submit" class="payment-btn payment-btn-secondary large">
+                                    Продолжить                                    </button>
+                            </div>
+                        </div>
+                        <div class="payment-details__form__desc">
+                            <p>Нажимая кнопку «Продолжить», я подтверждаю, что ознакомлен(а) с условиями <a href="https://a-pay.uz/publichnaya-oferta-ob-ispolzovanii-platezhnogo-servisa-a-pay" target="_blank" rel="noopener">публичной оферты</a> об использовании платежного сервиса «A-PAY» и безоговорочно принимаю их. Также я соглашаюсь на приобретение электронных денежных средств в соответствии с указанными условиями.</p>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-step2 d-none">
+                    <div class="payment-details__form__sms">
+                        <div class="payment-details__form__title">СМС подтверждение</div>
+                        <div class="payment-details__form__sub-title">
+                            Для подтверждения оплаты отправили 6-значный код на <span class="phone-number-sms"></span>. Вводя СМС код подтверждения, вы даете согласие на перевод электронных денежных средств на электронный кошелек мерчанта                            </div>
+                        <div class="payment-details__form__sms__field">
+                            <div class="payment-details__form__sms__field__label-wr">
+                                <label for="sms">Код из СМС</label>
+                                <div class="error-ms">Неверный код</div>
+                            </div>
+                            <div class="form-sms-input-wrap">
+                                <div class="sms-bg-wr">
+                                    <div class="sms-input1"></div>
+                                    <div class="sms-input2"></div>
+                                    <div class="sms-input3"></div>
+                                    <div class="sms-input4"></div>
+                                    <div class="sms-input5"></div>
+                                    <div class="sms-input6"></div>
+                                </div>
+                                <input
+                                        type="tel"
+                                        name="sms"
+                                        id="sms"
+                                        class="form-sms-input"
+                                        autocomplete="tel"
+                                        inputmode="tel"
+                                />
+                            </div>
+                        </div>
+                        <div class="payment-details__form__sms__actions">
+                            <div class="sms-countdown-wrap">
+                                <div class="sms-countdown"></div>
+                                <button disabled class="get-new-code-btn">Отправить код еще раз</button>
+                            </div>
+                            <button class="payment-cancel-btn">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="payment-footer payment-container">
+        <div>
+            <a href="https://a-pay.uz/publichnaya-oferta-ob-ispolzovanii-platezhnogo-servisa-a-pay" target="_blank">Публичная оферта</a>
+        </div>
+        <div>
+            <img src='./assets/logotype-pci.png' alt="footer-logo2" />
+        </div>
+        <div>
+            <a href="https://a-pay.uz/contacts" target="_blank">Служба поддержки</a>
+        </div>
+    </footer>
+</div>
 </body>
 </html>
