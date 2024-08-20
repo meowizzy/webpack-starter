@@ -1,0 +1,818 @@
+@import "bootstrap.min";
+@import "fonts";
+
+@keyframes ldsRing {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: url("../images/payment-pattern.png") 0 0 repeat-y;
+}
+
+.logo-wrapper {
+  max-width: 182px;
+  img {
+    max-width: 100%;
+  }
+}
+
+.payment-number {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+  overflow: hidden;
+}
+
+.payment-status {
+  & > div {
+    display: none;
+  }
+
+  &.PENDING {
+    color: #ffab00;
+
+    div.payment-status__first {
+      display: block;
+    }
+  }
+
+  &.PAID {
+    color: rgba(43, 188, 93, 1);
+
+    div.payment-status__second {
+      display: block;
+    }
+  }
+
+  &.CANCELED {
+    color: rgba(255, 82, 82, 1);
+
+    div.payment-status__third {
+      display: block;
+    }
+  }
+}
+
+.custom-modal {
+  .modal-content {
+    border: none;
+    border-radius: 16px;
+    color: rgba(3, 0, 91, 1);
+
+    .modal-header {
+      border: none;
+      font-size: 20px;
+      line-height: 30px;
+      font-family: "TT Norms Pro Bold", sans-serif;
+      padding: 40px 35px 30px 40px;
+
+      .close {
+        padding: 5px;
+        opacity: 1;
+        line-height: 0;
+        margin: 0;
+        outline: none;
+      }
+    }
+
+    .modal-body {
+      padding: 0 40px 24px;
+
+      .payment-details-modal__item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        font-size: 16px;
+        line-height: 22px;
+        font-family: "TT Norms Pro", sans-serif;
+
+        div {
+          font-family: "TT Norms Pro Bold", sans-serif;
+        }
+      }
+    }
+  }
+}
+
+.modal-backdrop {
+  background-color: rgba(3, 0, 91);
+
+  &.show {
+    opacity: 0.6;
+  }
+}
+
+.main-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    background: url("../images/payment-loading.svg") 0 0 no-repeat;
+    animation: ldsRing 0.8s infinite linear;
+  }
+}
+
+.payment-btn {
+  border: none;
+  outline: none !important;
+  font-family: "TT Norms Pro Bold", sans-serif;
+  transition: all .3s ease;
+
+  &.payment-btn-primary {
+    color: rgba(0, 191, 218, 1);
+    background-color: rgba(242, 252, 253, 1);
+
+    &:hover {
+      color: #fff;
+      background-color: rgba(0, 191, 218, 1);
+    }
+  }
+
+  &.payment-btn-secondary {
+    color: #fff;
+    background-color: rgba(0, 191, 218, 1);
+
+    &:hover {
+      background-color: #03abc3;
+    }
+  }
+
+  &.small {
+    font-size: 14px;
+    line-height: 22px;
+    padding: 5px 10px;
+    border-radius: 8px;
+  }
+
+  &.large {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 19px 20px;
+    border-radius: 12px;
+  }
+}
+
+.payment-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.payment-container {
+  width: 100%;
+  max-width: 648px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.payment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 35px;
+  margin-bottom: 30px;
+
+  .language-selector {
+    .btn.btn-secondary {
+      line-height: 48px;
+      font-size: 1rem;
+      font-family: "TT Norms Pro Bold", sans-serif;
+      background: rgba(239, 239, 239, 1);
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      height: 60px;
+      padding-right: 30px;
+      box-shadow: none !important;
+    }
+
+    .dropdown-toggle {
+      background-color: #efefef;
+      border-radius: 8px;
+      border: none;
+      max-width: 307px;
+      width: 100%;
+      text-align: left;
+      color: #000000;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        content: "";
+        background-image: url("../images/expand-arrow.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 24px;
+        height: 24px;
+        border: none;
+        transition: all 0.3s ease;
+      }
+    }
+
+    .dropdown-menu {
+      background-color: #efefef;
+      border: none;
+      margin: 5px 0 0;
+    }
+
+    &.show {
+      .dropdown-toggle {
+        &::after {
+          transform: rotate(180deg) translateY(50%);
+        }
+      }
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      li {
+        a {
+          font-size: 1rem;
+          font-family: "TT Norms Pro Bold", sans-serif;
+          display: block;
+          padding: 3px 0 3px 15px;
+          color: #000;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.payment-details {
+  border: 1px solid rgba(242, 242, 242, 1);
+  border-radius: 16px;
+  color: rgba(3, 0, 91, 1);
+
+  &__head {
+    padding: 30px;
+
+    &__title {
+      font-size: 36px;
+      font-family: "TT Norms Pro Bold", sans-serif;
+      line-height: 40px;
+      margin: 0 10px 0 0;
+    }
+
+    &__top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    &__bot {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0 -10px;
+    }
+  }
+
+  &__block {
+    padding: 0 10px;
+
+    &:nth-child(3) {
+      max-width: 180px;
+    }
+
+    &__title {
+      font-size: 16px;
+      font-family: "TT Norms Pro", sans-serif;
+      line-height: 22px;
+      margin-bottom: 4px;
+    }
+
+    &__val {
+      font-size: 20px;
+      font-family: "TT Norms Pro Bold", sans-serif;
+      line-height: 30px;
+    }
+  }
+
+  .payment-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 272px;
+
+    &__icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 12px;
+      background: url("../images/payment-loading.svg") 0 0 no-repeat;
+      animation: ldsRing 0.8s infinite linear;
+    }
+
+    &__text {
+      font-size: 14px;
+      font-family: "TT Norms Pro Bold", sans-serif;
+      line-height: 20px;
+    }
+  }
+
+  .payment-finish-state {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 269px;
+
+    &__icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 12px;
+    }
+
+    &__text {
+      font-size: 14px;
+      font-family: "TT Norms Pro Bold", sans-serif;
+      line-height: 20px;
+
+      span {
+        display: none;
+      }
+
+      .payment-go-back-link {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+
+        a {
+          color: #03005b;
+        }
+      }
+    }
+
+    &.PAID {
+      .payment-finish-state__icon {
+        background: url("../images/payment-check.svg") 0 0 no-repeat;
+      }
+
+      .payment-finish-state__text {
+        &__first {
+          display: block;
+        }
+      }
+    }
+
+    &.CANCELED {
+      .payment-finish-state__icon {
+        background: url("../images/payment-error.svg") 0 0 no-repeat;
+      }
+
+      .payment-finish-state__text {
+        &__second {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__form {
+    position: relative;
+    background-color: rgba(250, 250, 250, 1);
+    padding: 50px 20px;
+    border-radius: 15px;
+
+    p {
+      margin: 0;
+    }
+
+    &__title {
+      font-size: 18px;
+      font-family: "TT Norms Pro Bold", sans-serif;
+      line-height: 28px;
+      margin-bottom: 6px;
+    }
+
+    &__sub-title {
+      font-size: 14px;
+      font-family: "TT Norms Pro", sans-serif;
+      line-height: 20px;
+      margin-bottom: 24px;
+    }
+
+    label {
+      color: rgba(138, 148, 166, 1);
+      font-size: 14px;
+      font-family: "TT Norms Pro", sans-serif;
+      line-height: 20px;
+      margin-bottom: 10px;
+    }
+
+    &__row {
+      display: block;
+      margin: 0 -10px;
+
+      .payment-details__form__fields__item {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+
+    .has-error {
+      input[type="tel"] {
+        border-color: rgba(255, 82, 82, 1);
+      }
+
+      label {
+        color: rgba(255, 82, 82, 1);
+      }
+    }
+
+    &__fields {
+      max-width: 480px;
+      margin: 0 auto;
+
+      &__item {
+        margin-top: 14px;
+        margin-bottom: 20px;
+
+        .card-fields {
+          display: flex;
+
+          label {
+            display: none;
+          }
+
+          div:first-child {
+            flex-grow: 1;
+
+            input {
+              width: 100%;
+            }
+          }
+        }
+
+        input[type="tel"] {
+          outline: none;
+          border: 1px solid rgba(243, 243, 243, 1);
+          color: #0C044F;
+          font-size: 16px;
+          font-family: "TT Norms Pro", sans-serif;
+          line-height: 24px;
+          padding: 17px 25px;
+
+          &::placeholder {
+            color: #8a94a6;
+          }
+
+          &.form-card-input {
+            border-radius: 12px 0 0 12px;
+          }
+
+          &.form-expiry-input {
+            border-radius: 0 12px 12px 0;
+            border-left: none;
+            width: 120px;
+          }
+
+          &.form-cvv-input {
+            border-radius: 12px;
+            width: 90px;
+          }
+        }
+      }
+
+      &__button {
+        text-align: center;
+      }
+    }
+
+    &__desc {
+      max-width: 516px;
+      margin: 0 auto;
+      padding-top: 20px;
+      text-align: center;
+      font-size: 14px;
+      font-family: "TT Norms Pro", sans-serif;
+      line-height: 20px;
+      color: rgba(151, 150, 186, 1);
+
+      a {
+        color: rgba(0, 191, 218, 1);
+      }
+    }
+
+    &__sms {
+      max-width: 398px;
+      margin: 0 auto;
+
+      &__field {
+        &.has-error {
+          .form-sms-input-wrap .sms-bg-wr {
+            & > div {
+              border-color: rgba(255, 82, 82, 1);
+              color: rgba(255, 82, 82, 1);
+            }
+          }
+
+          .payment-details__form__sms__field__label-wr {
+            label {
+              color: rgba(255, 82, 82, 1);
+            }
+
+            .error-ms {
+              display: block;
+            }
+          }
+        }
+
+        &__label-wr {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .error-ms {
+            display: none;
+            font-size: 12px;
+            margin-bottom: 10px;
+            color: rgba(255, 82, 82, 1);
+          }
+        }
+
+        .form-sms-input-wrap {
+          position: relative;
+          z-index: 1;
+
+          .sms-bg-wr {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            z-index: -1;
+
+            & > div {
+              width: 58px;
+              padding: 14px 23px;
+              border: 1px solid rgba(243, 243, 243, 1);
+              background-color: #fff;
+              border-radius: 12px;
+              font-size: 20px;
+              font-family: "TT Norms Pro", sans-serif;
+              font-weight: 500;
+              line-height: 30px;
+              color: rgba(3, 0, 91, 1);
+            }
+          }
+
+          .form-sms-input {
+            opacity: 0;
+            height: 58px;
+            width: 100%;
+            letter-spacing: 57px;
+          }
+        }
+      }
+
+      &__actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 20px;
+
+        .sms-countdown-wrap {
+          display: flex;
+          align-items: center;
+
+          .sms-countdown {
+            text-align: center;
+            font-size: 10px;
+            line-height: 20px;
+            min-height: 26px;
+            padding: 2px 0;
+            margin-right: 6px;
+            color: rgba(3, 0, 91, 0.4);
+            width: 26px;
+            border: 1px solid rgba(151, 150, 186, 1);
+            border-radius: 50%;
+          }
+        }
+
+        button {
+          border: none;
+          outline: none;
+          background-color: transparent;
+          color: rgba(3, 0, 91, 1);
+          font-size: 14px;
+          line-height: 20px;
+
+          &:not(:disabled):hover {
+            text-decoration: underline;
+          }
+
+          &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+          }
+        }
+
+        .payment-cancel-btn {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+.payment-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 30px;
+  padding-bottom: 35px;
+
+  & > div {
+    &:first-child {
+      width: 33%;
+    }
+
+    &:last-child {
+      width: 33%;
+      text-align: right;
+    }
+  }
+
+  a {
+    font-size: 14px;
+    text-decoration: none;
+    color: rgba(3, 0, 91, 1);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    background: none;
+  }
+
+  .payment-details__head__title {
+    font-size: 26px;
+    line-height: 30px;
+    margin-right: 0;
+  }
+
+  .payment-details__block {
+    margin-bottom: 10px;
+  }
+
+  .payment-details__block:nth-child(3) {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-details__head {
+    padding: 20px;
+  }
+
+  .payment-details__form {
+    padding: 24px 20px;
+
+    label {
+      margin-bottom: 6px;
+    }
+  }
+
+  .payment-details__block {
+    &__title {
+      font-size: 14px;
+    }
+
+    &__val {
+      font-size: 16px;
+    }
+  }
+
+  .payment-details__form__row .payment-details__form__fields__item {
+    .card-fields {
+      display: block;
+
+      & > div {
+        margin-bottom: 14px;
+      }
+
+      label {
+        display: inline-block;
+      }
+
+      input[type=tel] {
+        &.form-card-input {
+          border-radius: 12px;
+        }
+
+        &.form-expiry-input {
+          border-radius: 12px;
+          border-left: 1px solid #f3f3f3;
+          width: 130px;
+          padding-left: 31px;
+          padding-right: 31px;
+        }
+      }
+    }
+  }
+
+  .payment-details__form__sms__field .form-sms-input-wrap {
+    .sms-bg-wr {
+      display: none;
+    }
+
+    .form-sms-input {
+      opacity: 1;
+      border: 1px solid #f3f3f3;
+      outline: 0;
+      color: #8a94a6;
+      font-size: 16px;
+      font-family: "TT Norms Pro", sans-serif;
+      line-height: 24px;
+      padding: 17px 25px;
+      border-radius: 12px;
+      letter-spacing: inherit;
+    }
+  }
+
+  .payment-details__form__fields__button {
+    button {
+      width: 100%;
+    }
+  }
+
+  .payment-header {
+    padding-top: 30px;
+
+    .logo-wrapper {
+      width: 124px;
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .language-selector .btn.btn-secondary {
+      line-height: 32px;
+      height: 44px;
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  .payment-footer {
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+
+    & > div {
+      &:first-child, &:last-child {
+        width: auto;
+      }
+
+      &:nth-child(2) {
+        order: 3;
+        width: 100%;
+        min-width: 100%;
+        text-align: center;
+        padding-top: 20px;
+      }
+    }
+  }
+}
