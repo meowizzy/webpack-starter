@@ -18,11 +18,11 @@ module.exports = {
     ],
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "js/bundle.[contenthash].js",
+        filename: "js/bundle.main.js",
         clean: {
             keep: /textolite\//
         },
-        assetModuleFilename: "assets/[name].hll[ext]",
+        assetModuleFilename: "assets/[name][ext]",
     },
     module: {
         rules: [
