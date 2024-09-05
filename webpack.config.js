@@ -22,7 +22,7 @@ module.exports = {
         clean: {
             keep: /textolite\//
         },
-        assetModuleFilename: "assets/[name].[contenthash][ext]",
+        assetModuleFilename: "assets/[name].hll[ext]",
     },
     module: {
         rules: [

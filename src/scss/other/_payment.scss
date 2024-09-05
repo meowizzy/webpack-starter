@@ -173,7 +173,8 @@ body {
 .payment-wrap {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  justify-content: center;
+  min-height: 100%;
 }
 
 .payment-container {
@@ -652,7 +653,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: auto;
   padding-top: 30px;
   padding-bottom: 35px;
 
